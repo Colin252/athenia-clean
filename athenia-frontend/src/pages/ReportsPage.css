@@ -1,0 +1,108 @@
+/* === FONDO GENERAL === */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.reports-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* === CUADRO CENTRAL === */
+.reports-card {
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+h1 {
+    color: #1e3a8a;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #475569;
+    margin-bottom: 20px;
+}
+
+/* === BOTÓN EXPORTAR === */
+.export-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.export-btn:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+/* === GRID DE ESTADÍSTICAS === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.stat-card h2 {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stat-card p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111827;
+}
+
+/* Colores por sección */
+.stat-card.blue h2 { color: #2563eb; }
+.stat-card.green h2 { color: #059669; }
+.stat-card.purple h2 { color: #9333ea; }
+.stat-card.pink h2 { color: #db2777; }
+
+/* === EFECTO HOVER === */
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .reports-card {
+        width: 90%;
+        padding: 25px;
+    }
+}

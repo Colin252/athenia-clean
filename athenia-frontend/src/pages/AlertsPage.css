@@ -1,0 +1,42 @@
+.alerts-container {
+    text-align: center;
+    padding: 40px;
+    font-family: "Segoe UI", sans-serif;
+    background: #f9fafb;
+}
+
+.alerts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.alert-box {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.alert-high {
+    background-color: #ef4444;
+    animation: blink 1.2s infinite alternate;
+}
+
+.alert-medium {
+    background-color: #facc15;
+    color: #1e3a8a;
+}
+
+.alert-low {
+    background-color: #10b981;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.6; }
+}

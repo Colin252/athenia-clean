@@ -1,0 +1,159 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.inventory-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* === TARJETA CENTRAL === */
+.inventory-card {
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+h1 {
+    color: #0d9488;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* === FORMULARIO === */
+.inventory-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.inventory-form input {
+    padding: 10px;
+    width: 260px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+}
+
+.inventory-form input:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 5px rgba(13, 148, 136, 0.6);
+}
+
+.inventory-form button {
+    margin-top: 10px;
+    background: #0d9488;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.inventory-form button:hover {
+    background: #14b8a6;
+    transform: scale(1.05);
+}
+
+/* === LISTA === */
+.inventory-list {
+    margin-top: 30px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    height: 230px;              /* 🔥 altura fija */
+    overflow-y: auto;           /* 🔥 scroll vertical */
+    scrollbar-width: thin;
+    scrollbar-color: #0d9488 #f0f0f0;
+}
+
+.inventory-list ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.inventory-list li {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* === ESTADOS === */
+.inventory-list li.low {
+    border-left: 5px solid #facc15; /* Amarillo: bajo stock */
+}
+
+.inventory-list li.out {
+    border-left: 5px solid #ef4444; /* Rojo: sin stock */
+}
+
+/* === BOTONES === */
+.edit-btn,
+.delete-btn {
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.edit-btn {
+    background: #3b82f6;
+}
+
+.delete-btn {
+    background: #e11d48;
+}
+
+.edit-btn:hover {
+    background: #2563eb;
+}
+
+.delete-btn:hover {
+    background: #be123c;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .inventory-card {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .inventory-form input {
+        width: 100%;
+    }
+
+    .inventory-list {
+        height: 180px;
+    }
+}

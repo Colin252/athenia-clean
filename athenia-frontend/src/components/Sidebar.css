@@ -1,0 +1,28 @@
+.sidebar {
+    background: #f5f7fa;
+    width: 220px;
+    min-height: calc(100vh - 60px);
+    box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+    padding-top: 20px;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 12px 20px;
+    margin: 6px 0;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: all 0.3s;
+}
+
+.sidebar li:hover {
+    background: #e8f0fe;
+    border-left: 4px solid #1a73e8;
+    font-weight: bold;
+}
