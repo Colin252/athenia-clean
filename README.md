@@ -1,163 +1,105 @@
-⚙️ Quantik Backend – Spring Boot Cloud API
+# 🩺 Athenia App — Full Project Documentation
+### 🌍 Live Demo: [https://athenia-demo.art/](https://athenia-demo.art/)
+## 🚀 Overview
+**Athenia App** is a medical platform developed by **Helton Quiroz**, built with a **Full Stack Cloud** approach that combines **Java (Spring Boot)** for the backend and **React + Vite** for the frontend.  
+The project was successfully deployed on a **Google Cloud Virtual Machine (GCP VM)**, integrating **Nginx**, **SSH**, and a functional **CI/CD pipeline**.
 
-Quantik Backend is the core API of the Quantik full-stack financial management platform.
-It provides secure REST endpoints for user authentication, accounting operations, and data management.
-The backend is fully developed in Spring Boot 3, with MySQL as the primary database, and deployed on a Google Cloud VM.
+---
 
-🌎 Deployment & Cloud Infrastructure
-Environment	Platform	Description
-Backend – Production	Google Cloud Compute Engine
-	Spring Boot + MySQL running on Ubuntu 22.04 (port 8080)
-Backend – Secondary	Render (PaaS)	Used for HTTPS/CORS proxy testing
-Frontend Connection	Vercel Frontend
-	React app consuming Quantik’s REST API
-CI/CD Integration	GitHub Actions	Automated build & deploy from main branch
+## 🧠 Objectives Achieved
+✅ Implemented a complete full stack application (frontend + backend).  
+✅ Configured and secured cloud infrastructure (GCP VM).  
+✅ Deployed frontend manually and automatically through CI/CD.  
+✅ Integrated Nginx as a production web server.  
+✅ Managed secure access with SSH key pairs (public/private).  
+✅ Validated functional deployment via public domain.
 
-☁️ The backend is hosted on a Google Cloud VM, configured manually with:
+---
 
-Java 17 + Maven 3.6.3
+## ⚙️ Technical Architecture
 
-MySQL 8 with secure credentials
+| Component | Technology | Description |
+|------------|-------------|-------------|
+| **Frontend** | React + Vite | Modern interface, optimized with npm build |
+| **Backend** | Java 17 + Spring Boot | REST API with secure endpoints |
+| **Infrastructure** | Google Cloud VM | Stable Debian-based Linux server |
+| **Web Server** | Nginx | Static file server for frontend |
+| **CI/CD** | GitHub Actions + SSH | Controlled automated deployment |
+| **Security** | SSH Key Pairs | Private (VM) and public (GCP) keys |
+| **Logs & Monitoring** | journalctl / Nginx | Deployment and error tracking |
 
-Firewall rules for port 8080
+---
 
-Systemd service for persistent backend runtime
+## 📦 Manual Deployment Flow
+```bash
+cd ~/athenia-clean/athenia-frontend
+npm install --legacy-peer-deps
+npm run build
+sudo rm -rf /var/www/html/*
+sudo cp -r dist/* /var/www/html/
+sudo systemctl restart nginx
+echo "✅ Manual deployment completed successfully."
 
-🧩 Tech Stack
-Category	Technologies
-Language	Java 17
-Framework	Spring Boot 3
-Security	Spring Security 6 + JWT Authentication
-Database	MySQL 8
-ORM	Hibernate / JPA
-Build Tool	Maven
-Cloud Host	Google Cloud VM (Compute Engine)
-Version Control	GitHub
-CI/CD	GitHub Actions + SSH deployment
-Documentation	Postman / OpenAPI (Swagger-ready)
-🔐 Main Features
+🔄 CI/CD Pipeline (GitHub Actions)
 
-🔑 JWT Authentication: Secure login & registration endpoints with token-based access
+File: .github/workflows/maven-ci.yml
 
-👥 User Management: CRUD for users with roles (Admin/User)
+name: Frontend CI/CD Deploy
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout code
+        uses: actions/checkout@v4
+      - name: 🎨 Deploy Frontend on VM
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.GCP_VM_IP }}
+          username: ${{ secrets.GCP_USER }}
+          key: ${{ secrets.GCP_SSH_KEY }}
+          script: |
+            cd ~/athenia-clean/athenia-frontend
+            npm install --legacy-peer-deps
+            npm run build
+            sudo rm -rf /var/www/html/*
+            sudo cp -r dist/* /var/www/html/
+            sudo systemctl restart nginx
 
-💼 Financial Modules: Entities for clients, suppliers, products, invoices, and transactions
+🔐 Security
 
-💾 MySQL Integration: Real data persistence with custom repositories
+Private key: stored securely in the VM (~/.ssh/id_rsa)
 
-⚙️ RESTful API Architecture: Clean endpoints integrated with React frontend
+Public key: registered in Google Cloud Metadata
 
-🌐 CORS Configuration: Fully open CORS for localhost 3000 & Vercel domains
+Firewall: enabled only for SSH (TCP:22) and HTTP (TCP:80)
 
-🧱 Exception Handling & Validation: Custom error responses for API stability
+🌐 Final Deployment
 
-🔁 CI/CD Ready: Maven build pipeline integrated with GitHub workflows
+Frontend: accessible via GCP domain / public IP
 
-🧠 System Architecture Overview
-+--------------------------+
-|        React (Vercel)    |
-|   quantik-frontend.vercel.app  |
-+-----------+--------------+
-            |
-            |  HTTPS / Axios requests
-            v
-+--------------------------+
-|    Spring Boot Backend   |  (Google Cloud VM)
-| - Authentication (JWT)   |
-| - CRUD Modules (Finance) |
-| - Business Logic Layer   |
-+-----------+--------------+
-            |
-            v
-+--------------------------+
-|        MySQL 8 DB        |
-|   Hosted in Google Cloud |
-+--------------------------+
+Backend: active and running inside the VM
 
-🧪 Endpoints Summary
-Method	Endpoint	Description
-POST	/api/login	Authenticate user and generate JWT token
-POST	/api/register	Register new user
-GET	/api/users	List all users (admin role)
-POST	/api/routines	Create new accounting record or routine
-GET	/api/routines	Fetch all records
-DELETE	/api/routines/{id}	Delete record by ID
+Infrastructure: stable, secure, and production-ready
 
-All endpoints are secured using JWT Authentication and tested through Postman.
+🧩 Technical Summary
 
-⚙️ Installation (Local Development)
-# Clone the repository
-git clone https://github.com/Colin252/quantik-backend.git
-cd quantik-backend
+The project was fully deployed and documented in a production environment:
 
-# Build the project
-./mvnw clean install
+CI/CD operational with GitHub Actions
 
-# Run the backend
-./mvnw spring-boot:run
+GCP security validated
 
+Frontend deployed using Nginx
 
-Default server: http://localhost:8080
-Database: quantik_db (MySQL 8)
+Backend successfully running on VM
 
-🚀 Cloud Deployment
+Complete version control and documentation integrated
 
-Google Cloud VM Setup Steps:
+👨‍💻 Author
 
-Create a VM instance with Ubuntu 22.04
-
-Install OpenJDK 17, Maven, and MySQL 8
-
-Clone the repository from GitHub
-
-Build and start with nohup java -jar target/quantik-backend-1.0.jar &
-
-Configure firewall: open port 8080
-
-Verify API availability via browser or Postman
-
-✅ Backend runs continuously via systemctl process manager for stability.
-
-💡 What I Learned
-
-Cloud deployment on Google Cloud Compute Engine
-
-CI/CD pipeline configuration with GitHub Actions
-
-Full-stack integration between React (Vercel) and Spring Boot (GCP)
-
-Secure authentication using Spring Security + JWT
-
-Database configuration and troubleshooting on Linux servers
-
-Real-world debugging of CORS & HTTPS challenges
-
-🧭 Next Steps & Roadmap
-
-Integrate Apache Spark for large-scale financial analytics
-
-Implement microservices architecture with Docker & Kubernetes
-
-Add unit & integration tests with JUnit 5 and Mockito
-
-Deploy backend to Render for multi-region redundancy
-
-Add Swagger UI documentation endpoint
-
-👤 Author
-
-Helton Emerson Quiroz López
-Full Stack Java + React Developer
-
-📧 heltonquiroz.dev@gmail.com
-
-🌐 LinkedIn 
-https://quantik-frontend.vercel.app/
-
-💻 Frontend Repository
-
-
-
-# test deploy Sun Oct 26 11:47:32 UTC 2025
-# Reintento CI/CD con secrets completos
-# Validar despliegue manual
+Helton Quiroz 
+Full Stack Developer | Cloud Engineer (GCP, Java, React)
+📍 Google Cloud • Java • React • CI/CD • Nginx • Linux
