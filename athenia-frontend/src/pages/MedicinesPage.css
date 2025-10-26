@@ -1,0 +1,171 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.medicines-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* === CUADRO CENTRAL === */
+.medicines-card {
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* === TÍTULO === */
+h1 {
+    color: #9333ea;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* === FORMULARIO === */
+.medicine-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.medicine-form input {
+    padding: 10px;
+    width: 260px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+}
+
+.medicine-form input:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 4px rgba(168, 85, 247, 0.5);
+}
+
+/* === BOTÓN PRINCIPAL === */
+.medicine-form button {
+    margin-top: 10px;
+    background: #9333ea;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.medicine-form button:hover {
+    background: #a855f7;
+    transform: scale(1.05);
+}
+
+/* === LISTA DE MEDICINAS === */
+.medicine-list {
+    margin-top: 30px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    height: 220px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #9333ea #f0f0f0;
+}
+
+.medicine-list ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.medicine-list li {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.medicine-info {
+    flex: 1;
+    color: #333;
+}
+
+/* === BOTONES DE ACCIÓN (IGUAL QUE PACIENTES) === */
+.medicine-actions {
+    display: flex;
+    justify-content: flex-end; /* 👉 alineados a la derecha */
+    align-items: center;
+    gap: 8px;                  /* espacio entre botones */
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.edit-btn {
+    background: #3b82f6;
+}
+
+.delete-btn {
+    background: #e11d48;
+}
+
+.edit-btn:hover {
+    background: #2563eb;
+}
+
+.delete-btn:hover {
+    background: #be123c;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .medicines-card {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .medicine-form input {
+        width: 100%;
+    }
+
+    .medicine-list {
+        height: 180px;
+    }
+
+    .medicine-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+}

@@ -1,0 +1,163 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.doctors-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* === TARJETA CENTRAL === */
+.doctors-card {
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* === TÍTULO === */
+h1 {
+    color: #004aad;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* === FORMULARIO === */
+.doctor-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.doctor-form input {
+    padding: 10px;
+    width: 260px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+}
+
+.doctor-form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* === BOTÓN PRINCIPAL === */
+.doctor-form button {
+    margin-top: 10px;
+    background: #004aad;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.doctor-form button:hover {
+    background: #007bff;
+    transform: scale(1.05);
+}
+
+/* === LISTA DE DOCTORES === */
+.doctor-list {
+    margin-top: 30px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    height: 220px; /* 🔥 altura fija */
+    overflow-y: auto; /* 🔥 scroll vertical */
+    scrollbar-width: thin;
+    scrollbar-color: #004aad #f0f0f0;
+}
+
+.doctor-list ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.doctor-list li {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-info {
+    flex: 1;
+    color: #333;
+}
+
+/* === BOTONES DE ACCIÓN === */
+.doctor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.edit-btn {
+    background: #007bff;
+}
+
+.delete-btn {
+    background: #e11d48;
+}
+
+.edit-btn:hover {
+    background: #005ad9;
+}
+
+.delete-btn:hover {
+    background: #c31432;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .doctors-card {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .doctor-form input {
+        width: 100%;
+    }
+
+    .doctor-list {
+        height: 180px;
+    }
+}
