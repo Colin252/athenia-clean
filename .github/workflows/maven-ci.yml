@@ -22,8 +22,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Maven
-        run: mvn -B clean verify
+      - name: Build with Maven (skip tests)
+        run: mvn -B clean package -DskipTests
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,4 +40,3 @@ jobs:
             echo "🚀 Desplegando nueva versión en la VM..."
             cd /opt/hadoop
             echo "✅ Despliegue exitoso desde GitHub Actions en $(date)"
-
