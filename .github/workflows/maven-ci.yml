@@ -1,57 +1,29 @@
-name: Java CI/CD Pipeline
+name: Frontend CI/CD Deploy
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-  build-and-deploy:
+  deploy-frontend:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧩 Checkout code
+      - name: 🧩 Checkout código
         uses: actions/checkout@v4
 
-      - name: ☕ Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: 🔧 Build Backend with Maven
-        run: mvn -B clean package -DskipTests
-
-      - name: 🚀 Deploy Backend to Google Cloud VM
+      - name: 🎨 Desplegar Frontend en VM
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.GCP_VM_IP }}
           username: ${{ secrets.GCP_USER }}
           key: ${{ secrets.GCP_SSH_KEY }}
           script: |
-            echo "🚀 Desplegando nueva versión del backend..."
-            if [ ! -d "/opt/athenia" ]; then
-              sudo mkdir -p /opt/athenia
-            fi
-            sudo systemctl stop athenia.service || true
-            sudo cp ~/athenia-clean/target/*.jar /opt/athenia/app.jar
-            sudo systemctl start athenia.service
-            echo "✅ Backend desplegado correctamente."
-
-      - name: 🎨 Build & Deploy Frontend
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.GCP_VM_IP }}
-          username: ${{ secrets.GCP_USER }}
-          key: ${{ secrets.GCP_SSH_KEY }}
-          script: |
-            echo "🧱 Construyendo frontend..."
+            echo "🚀 Desplegando frontend en producción..."
             cd ~/athenia-clean/athenia-frontend
             npm install --legacy-peer-deps
             npm run build
             sudo rm -rf /var/www/html/*
             sudo cp -r dist/* /var/www/html/
             sudo systemctl restart nginx
-            echo "🎨 Frontend actualizado correctamente."
-
+            echo "✅ Frontend desplegado correctamente."
